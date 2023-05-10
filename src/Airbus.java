@@ -106,6 +106,10 @@ public class Airbus {
         return radar;
     }
 
+    public List<CabinRobot> getCabinRobots() {
+        return cabinRobots;
+    }
+
     public final AtomicInteger totalNumberOfPassengers = new AtomicInteger();
     private final ArrayList<ArrayList<Seat>> seats = new ArrayList<ArrayList<Seat>>();
     private final List<CabinRobot> cabinRobots = new ArrayList<>();

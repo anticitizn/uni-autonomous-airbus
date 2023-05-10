@@ -55,8 +55,8 @@ public class Engine {
             System.out.println("Engine RPM set to 6000");
             phaser.arriveAndAwaitAdvance();
         } catch (Exception e) {
-        System.err.println(e.getMessage());
-    }
+            System.err.println(e.getMessage());
+        }
 
     }
 

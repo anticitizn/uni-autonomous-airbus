@@ -4,10 +4,14 @@ public class Seat {
     {
         this.passenger = passenger;
     }
-
     public boolean isOccupied()
     {
         return passenger != null;
     }
+
+    public Passenger getPassenger() {
+        return passenger;
+    }
+
     private Passenger passenger = null;
 }
