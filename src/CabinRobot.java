@@ -25,8 +25,7 @@ public class CabinRobot extends AbstractRobot implements Callable<AtomicBoolean>
             }
 
             plane.totalNumberOfPassengers.addAndGet(passengerCount);
-            //System.out.println("Passengers counted: " + passengerCount);
-            //System.out.println("Total passengers so far: " + plane.totalNumberOfPassengers.get());
+            Logger.log("Cabin robot counted " + passengerCount + " passengers in his assigned rows");
         }).start();
     }
 

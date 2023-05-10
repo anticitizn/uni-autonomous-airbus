@@ -10,6 +10,8 @@ public class Scenario03 extends BaseScenario {
 
     public void start() {
         try {
+            Logger.setFilename("scenario_03.log");
+            Logger.log("Item loading started");
             Storage storage = new Storage();
             List<Container> containers = new ArrayList<Container>();
 
@@ -22,7 +24,7 @@ public class Scenario03 extends BaseScenario {
             }
 
             airbusA350.getCentralUnit().LoadCargo(storage, containers);
-            System.out.println("Human counted " + human.countContainerItems() + " items");
+            Logger.log("Human counted " + human.countContainerItems() + " items");
         }
         catch (Exception e) {
             System.err.println(e.getMessage());

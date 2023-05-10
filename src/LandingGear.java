@@ -9,7 +9,7 @@ public class LandingGear {
         try {
             Thread.sleep((rand.nextInt(3) + 1) * 1000);
             isDown = true;
-            System.out.println("Landing gear lowered");
+            Logger.log("Landing gear lowered");
         }
         catch (Exception e)
         {

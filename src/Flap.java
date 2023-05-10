@@ -4,5 +4,6 @@ public class Flap {
     public void Lower()
     {
         isDown = true;
+        Logger.log("Flap lowered");
     }
 }

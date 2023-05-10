@@ -12,7 +12,6 @@ public class Main {
         catch (Exception e)
         {
             System.err.println(e.getMessage());
-            System.out.println("lol");
         }
     }
 }

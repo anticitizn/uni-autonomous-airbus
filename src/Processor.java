@@ -18,7 +18,7 @@ public class Processor {
             try {
                 var image = exchanger.exchange("ack");
                 countBirdsInImage((char[][]) image);
-                System.out.println("Bird count: " + countBirds);
+                Logger.log("Bird count: " + countBirds);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

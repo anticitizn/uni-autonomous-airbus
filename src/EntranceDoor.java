@@ -9,7 +9,7 @@ public class EntranceDoor {
         try {
             Thread.sleep((rand.nextInt(3) + 1) * 1000);
             open = false;
-            System.out.println("Door closed");
+            Logger.log("Door closed");
         }
         catch (Exception e)
         {

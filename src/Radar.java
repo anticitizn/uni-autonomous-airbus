@@ -27,7 +27,7 @@ public class Radar {
                 String result = (String) exchanger.exchange(picture);
                 if (Objects.equals(result, "ack")) {
                     countAcknowledged++;
-                    System.out.println("Received ack");
+                    Logger.log("Received ack");
                 }
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {

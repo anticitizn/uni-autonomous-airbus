@@ -10,6 +10,7 @@ public class Scenario07 extends BaseScenario {
 
     public void start() {
         try {
+            Logger.setFilename("scenario_07.log");
             airbusA350.getCentralUnit().Scan();
         }
         catch (Exception e) {

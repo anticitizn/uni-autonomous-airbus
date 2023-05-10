@@ -17,6 +17,15 @@ public class CentralUnit {
         airbus.getAntiCollisionLight().forEach(antiCollisionLight -> {
             scheduledExecutorService.scheduleAtFixedRate(antiCollisionLight::blink, 0, 3, TimeUnit.SECONDS);
         });
+
+        try {
+            Thread.sleep(10000);
+            scheduledExecutorService.shutdown();
+            scheduledExecutorService.awaitTermination(5, TimeUnit.SECONDS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void LoadCargo(Storage storage, List<Container> containers)
@@ -36,14 +45,14 @@ public class CentralUnit {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            System.out.println("Cargo loading complete");
+            Logger.log("Cargo loading complete");
         }
     }
 
     public void StartLaunchSequence() {
         CyclicBarrier doorBarrier = new CyclicBarrier(4 + 1);
         CyclicBarrier engineBarrier = new CyclicBarrier(2 + 1, () -> {
-            System.out.println("Ready for taxi");
+            Logger.log("Ready for taxi");
         });
 
         for (EntranceDoor entranceDoor : airbus.getEntranceDoors()) {
@@ -103,6 +112,7 @@ public class CentralUnit {
                                 countMessageAlarm++;
                                 break;
                         }
+                        Logger.log("Sensor reports status: " + sensor.getSensorStatus().name());
                         semaphore.release();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -113,9 +123,9 @@ public class CentralUnit {
             executorService.shutdown();
 
 
-            System.out.println("Sensors reporting normal: " + countMessageNormal);
-            System.out.println("Sensors reporting warnings: " + countMessageWarning);
-            System.out.println("Sensors reporting alarms: " + countMessageAlarm);
+            Logger.log("Sensors reporting normal: " + countMessageNormal);
+            Logger.log("Sensors reporting warnings: " + countMessageWarning);
+            Logger.log("Sensors reporting alarms: " + countMessageAlarm);
         }
     }
 
@@ -145,12 +155,12 @@ public class CentralUnit {
                 flap.Lower();
             }
         }
-        System.out.println("Flaps lowered");
+        Logger.log("Flaps lowered");
     }
 
     public void Scan()
     {
-        System.out.println("Starting scan");
+        Logger.log("Starting bird scan");
         new Thread(airbus.getRadar()::StartScanning).start();
         new Thread(airbus.getProcessor()::StartProcessing).start();
 
@@ -162,9 +172,9 @@ public class CentralUnit {
             System.err.println(e.getMessage());
         }
 
-        System.out.println();
-        System.out.println("ACKs counted: " + airbus.getRadar().getCountAcknowledged());
-        System.out.println("Birds counted: " + airbus.getProcessor().getCountBirds());
+        Logger.log("");
+        Logger.log("ACKs counted: " + airbus.getRadar().getCountAcknowledged());
+        Logger.log("Birds counted: " + airbus.getProcessor().getCountBirds());
 
         System.exit(0);
     }
@@ -175,6 +185,7 @@ public class CentralUnit {
         for (Engine engine : airbus.getEngines())
         {
             engine.setPhaser(phaser);
+            Logger.log("Starting phased engine");
             new Thread(engine::startPhased).start();
         }
 

@@ -35,7 +35,7 @@ public class Container {
                 items.push(item);
             }
             if (items.size() == 25) {
-                System.out.println("Container is full");
+                Logger.log("Container is full");
             }
         } catch (Exception e) {
             e.printStackTrace();

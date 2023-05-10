@@ -10,6 +10,8 @@ public class Scenario04 extends BaseScenario {
 
     public void start() {
         try {
+            Logger.setFilename("scenario_04.log");
+            Logger.log("Launch sequence started");
             airbusA350.getCentralUnit().StartLaunchSequence();
         }
         catch (Exception e) {

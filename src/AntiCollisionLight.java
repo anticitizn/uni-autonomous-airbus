@@ -23,7 +23,7 @@ public class AntiCollisionLight {
 
     public void blink()
     {
-        System.out.println("Light blinking!");
+        Logger.log(position.name() + " light blinking!");
         on();
         try {
             Thread.sleep(200);

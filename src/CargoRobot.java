@@ -12,6 +12,9 @@ public class CargoRobot extends AbstractRobot {
                     container.insertItem(item);
                 }
             }
+            else {
+                Logger.log("Cargo robot found empty container");
+            }
         }
     }
 

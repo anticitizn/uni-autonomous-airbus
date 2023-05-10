@@ -24,7 +24,7 @@ public class Engine {
         try {
             Thread.sleep((rand.nextInt(4) + 1) * 1000);
             turnOn();
-            System.out.println("Engine on");
+            Logger.log("Engine on");
         }
         catch (Exception e)
         {
@@ -37,22 +37,22 @@ public class Engine {
             turnOn();
             Thread.sleep(3000);
             rpm = 500;
-            System.out.println("Engine RPM set to 500");
+            Logger.log("Engine RPM set to 500");
             phaser.arriveAndAwaitAdvance();
 
             Thread.sleep(3000);
             rpm = 2400;
-            System.out.println("Engine RPM set to 2400");
+            Logger.log("Engine RPM set to 2400");
             phaser.arriveAndAwaitAdvance();
 
             Thread.sleep(3000);
             rpm = 4400;
-            System.out.println("Engine RPM set to 4400");
+            Logger.log("Engine RPM set to 4400");
             phaser.arriveAndAwaitAdvance();
 
             Thread.sleep(3000);
             rpm = 6000;
-            System.out.println("Engine RPM set to 6000");
+            Logger.log("Engine RPM set to 6000");
             phaser.arriveAndAwaitAdvance();
         } catch (Exception e) {
             System.err.println(e.getMessage());
