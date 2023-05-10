@@ -1,7 +1,4 @@
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.List;
 
 public class CentralUnit {
@@ -40,8 +37,45 @@ public class CentralUnit {
         }
     }
 
-    public void StartLaunchSequence()
-    {
+    public void StartLaunchSequence() {
+        CyclicBarrier doorBarrier = new CyclicBarrier(4 + 1);
+        CyclicBarrier engineBarrier = new CyclicBarrier(2 + 1, () -> {
+            System.out.println("Ready for taxi");
+        });
 
+        for (EntranceDoor entranceDoor : airbus.getEntranceDoors()) {
+            new Thread(() -> {
+                entranceDoor.Close();
+                try {
+                    doorBarrier.await();
+                } catch (InterruptedException | BrokenBarrierException e) {
+                    throw new RuntimeException(e);
+                }
+            }).start();
+        }
+
+        try {
+            doorBarrier.await();
+        } catch (InterruptedException | BrokenBarrierException e) {
+            throw new RuntimeException(e);
+        }
+
+        for (Engine engine : airbus.getEngines()) {
+            new Thread(() -> {
+                engine.start();
+                try {
+                    engineBarrier.await();
+                } catch (InterruptedException | BrokenBarrierException e) {
+                    throw new RuntimeException(e);
+                }
+            }).start();
+        }
+
+        try {
+            engineBarrier.await();
+        } catch (InterruptedException | BrokenBarrierException e) {
+            throw new RuntimeException(e);
+        }
     }
+
 }

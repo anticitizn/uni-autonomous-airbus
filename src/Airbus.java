@@ -30,6 +30,16 @@ public class Airbus {
         {
             this.cargoRobots.add(new CargoRobot());
         }
+
+        for (int i = 0; i < 4; i++)
+        {
+            entranceDoors.add(new EntranceDoor());
+        }
+
+        for (int i = 0; i < 2; i++)
+        {
+            engines.add(new Engine());
+        }
     }
 
     public void CountPassengers() {
@@ -45,7 +55,13 @@ public class Airbus {
     public List<CargoRobot> getCargoRobots() {
         return cargoRobots;
     }
+    public List<EntranceDoor> getEntranceDoors() {
+        return entranceDoors;
+    }
 
+    public List<Engine> getEngines() {
+        return engines;
+    }
     public final AtomicInteger totalNumberOfPassengers = new AtomicInteger();
     private final ArrayList<ArrayList<Seat>> seats = new ArrayList<ArrayList<Seat>>();
     private final List<CabinRobot> cabinRobots = new ArrayList<>();
