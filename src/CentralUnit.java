@@ -169,4 +169,15 @@ public class CentralUnit {
         System.exit(0);
     }
 
+    public void StartEngines()
+    {
+        Phaser phaser = new Phaser(2);
+        for (Engine engine : airbus.getEngines())
+        {
+            engine.setPhaser(phaser);
+            new Thread(engine::startPhased).start();
+        }
+
+    }
+
 }
