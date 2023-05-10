@@ -119,4 +119,33 @@ public class CentralUnit {
         }
     }
 
+    public void Land()
+    {
+        CountDownLatch latch = new CountDownLatch(3);
+        for (LandingGear landingGear : airbus.getLandingGears())
+        {
+            new Thread( () -> {
+                landingGear.Lower();
+                latch.countDown();
+            }).start();
+        }
+
+        try {
+            latch.await();
+        }
+        catch (Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
+
+        for (Wing wing : airbus.getWings())
+        {
+            for (Flap flap : wing.getFlaps())
+            {
+                flap.Lower();
+            }
+        }
+        System.out.println("Flaps lowered");
+    }
+
 }

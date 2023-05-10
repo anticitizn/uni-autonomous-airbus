@@ -45,6 +45,16 @@ public class Airbus {
         {
             sensors.add(new Sensor());
         }
+
+        for (int i = 0; i < 2; i++)
+        {
+            wings.add(new Wing());
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            landingGears.add(new LandingGear());
+        }
     }
 
     public void CountPassengers() {
