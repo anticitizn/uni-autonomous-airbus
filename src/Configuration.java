@@ -1,5 +1,5 @@
 public enum Configuration {
     INSTANCE;
 
-    public final BaseScenario scenario = new Scenario04();
+    public final BaseScenario scenario = new Scenario05();
 }

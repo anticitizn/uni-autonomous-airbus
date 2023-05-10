@@ -40,6 +40,11 @@ public class Airbus {
         {
             engines.add(new Engine());
         }
+
+        for (int i = 0; i < 500; i++)
+        {
+            sensors.add(new Sensor());
+        }
     }
 
     public void CountPassengers() {
@@ -62,6 +67,19 @@ public class Airbus {
     public List<Engine> getEngines() {
         return engines;
     }
+
+    public List<Sensor> getSensors() {
+        return sensors;
+    }
+
+    public List<Wing> getWings() {
+        return wings;
+    }
+
+    public List<LandingGear> getLandingGears() {
+        return landingGears;
+    }
+
     public final AtomicInteger totalNumberOfPassengers = new AtomicInteger();
     private final ArrayList<ArrayList<Seat>> seats = new ArrayList<ArrayList<Seat>>();
     private final List<CabinRobot> cabinRobots = new ArrayList<>();
