@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
-public class Robot {
-    public Robot(Airbus plane, ArrayList<ArrayList<Seat>> seats)
+public class CabinRobot extends AbstractRobot {
+    public CabinRobot(Airbus plane, ArrayList<ArrayList<Seat>> seats)
     {
         this.plane = plane;
         this.seats = seats;
@@ -22,8 +22,8 @@ public class Robot {
             }
 
             plane.totalNumberOfPassengers.addAndGet(passengerCount);
-            System.out.println("Passengers counted: " + passengerCount);
-            System.out.println("Total passnegers so far: " + plane.totalNumberOfPassengers.get());
+            //System.out.println("Passengers counted: " + passengerCount);
+            //System.out.println("Total passengers so far: " + plane.totalNumberOfPassengers.get());
         }).start();
 
     }
