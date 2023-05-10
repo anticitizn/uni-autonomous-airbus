@@ -4,10 +4,16 @@ import java.util.concurrent.Executors;
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
-        Airbus airbus = new Airbus();
-        airbus.CountPassengers();
-        Thread.sleep(2000);
-        System.out.println(airbus.totalNumberOfPassengers);
+    public static void main(String[] args) {
+        ScenarioExecutor scenarioExecutor = new ScenarioExecutor();
+        try {
+            scenarioExecutor.run();
+        }
+        catch (Exception e)
+        {
+            System.err.println(e.getMessage());
+            System.out.println("lol");
+        }
+
     }
 }
