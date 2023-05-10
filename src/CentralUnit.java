@@ -148,4 +148,25 @@ public class CentralUnit {
         System.out.println("Flaps lowered");
     }
 
+    public void Scan()
+    {
+        System.out.println("Starting scan");
+        new Thread(airbus.getRadar()::StartScanning).start();
+        new Thread(airbus.getProcessor()::StartProcessing).start();
+
+        try {
+            Thread.sleep(5000);
+        }
+        catch (Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
+
+        System.out.println();
+        System.out.println("ACKs counted: " + airbus.getRadar().getCountAcknowledged());
+        System.out.println("Birds counted: " + airbus.getProcessor().getCountBirds());
+
+        System.exit(0);
+    }
+
 }

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Exchanger;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Airbus {
@@ -55,6 +56,10 @@ public class Airbus {
         {
             landingGears.add(new LandingGear());
         }
+
+        Exchanger exchanger = new Exchanger();
+        processor = new Processor(exchanger);
+        radar = new Radar(exchanger);
     }
 
     public void CountPassengers() {
@@ -89,6 +94,17 @@ public class Airbus {
     public List<LandingGear> getLandingGears() {
         return landingGears;
     }
+    public List<AntiCollisionLight> getAntiCollisionLight() {
+        return antiCollisionLight;
+    }
+
+    public Processor getProcessor() {
+        return processor;
+    }
+
+    public Radar getRadar() {
+        return radar;
+    }
 
     public final AtomicInteger totalNumberOfPassengers = new AtomicInteger();
     private final ArrayList<ArrayList<Seat>> seats = new ArrayList<ArrayList<Seat>>();
@@ -101,7 +117,8 @@ public class Airbus {
     private final List<Wing> wings = new ArrayList<>();
     private final List<LandingGear> landingGears = new ArrayList<>();
     List<AntiCollisionLight> antiCollisionLight = new ArrayList<AntiCollisionLight>();
-    public List<AntiCollisionLight> getAntiCollisionLight() {
-        return antiCollisionLight;
-    }
+
+    private Processor processor;
+    private Radar radar;
+
 }
