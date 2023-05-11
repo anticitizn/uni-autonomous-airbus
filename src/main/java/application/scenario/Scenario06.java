@@ -13,6 +13,7 @@ public class Scenario06 extends BaseScenario {
             Logger.setFilename("scenario_06.log");
             Logger.log("Landing initiated");
             airbusA350.getCentralUnit().Land();
+            Logger.close();
         }
         catch (Exception e) {
             System.err.println(e.getMessage());

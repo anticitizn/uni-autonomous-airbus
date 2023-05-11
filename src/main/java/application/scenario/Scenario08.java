@@ -13,6 +13,7 @@ public class Scenario08 extends BaseScenario {
             Logger.setFilename("scenario_08.log");
             Logger.log("Phased engine sequence initiated");
             airbusA350.getCentralUnit().StartEngines();
+            Logger.close();
         }
         catch (Exception e) {
             System.err.println(e.getMessage());

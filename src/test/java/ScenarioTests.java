@@ -4,6 +4,7 @@ import application.plane.Flap;
 import application.plane.LandingGear;
 import application.plane.Wing;
 import application.scenario.*;
+import application.utils.Logger;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,19 +12,23 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ScenarioTests {
 
     @Test
-    public void TestS01()
+    public void TestScenario01()
     {
+        Logger.setEnabled(false);
+
         Scenario01 scenario = new Scenario01();
         scenario.start();
 
         assertEquals(scenario.getAirbusA350().totalNumberOfPassengers.get(), 252);
     }
 
-    // scenario 2 has no defined end-state, so it cannot be tested
+    // Scenario 02 has no defined end-state, so it cannot be tested
 
     @Test
-    public void TestS03()
+    public void TestScenarioS03()
     {
+        Logger.setEnabled(false);
+
         Scenario03 scenario = new Scenario03();
         scenario.start();
 
@@ -36,8 +41,10 @@ public class ScenarioTests {
     }
 
     @Test
-    public void TestS04()
+    public void TestScenario04()
     {
+        Logger.setEnabled(false);
+
         Scenario04 scenario = new Scenario04();
         scenario.start();
 
@@ -48,8 +55,10 @@ public class ScenarioTests {
     }
 
     @Test
-    public void TestS05()
+    public void TestScenario05()
     {
+        Logger.setEnabled(false);
+
         Scenario05 scenario = new Scenario05();
         scenario.start();
 
@@ -59,7 +68,9 @@ public class ScenarioTests {
     }
 
     @Test
-    public void TestS06() {
+    public void TestScenario06() {
+        Logger.setEnabled(false);
+
         Scenario06 scenario = new Scenario06();
         scenario.start();
 
@@ -78,7 +89,9 @@ public class ScenarioTests {
     }
 
     @Test
-    public void TestS07() {
+    public void TestScenario07() {
+        Logger.setEnabled(false);
+
         Scenario07 scenario = new Scenario07();
         scenario.start();
 
@@ -87,7 +100,9 @@ public class ScenarioTests {
     }
 
     @Test
-    public void TestS08() {
+    public void TestScenario08() {
+        Logger.setEnabled(false);
+
         Scenario08 scenario = new Scenario08();
         scenario.start();
 
@@ -97,4 +112,6 @@ public class ScenarioTests {
         }
 
     }
+
+    // Scenario 09 has no defined end-state (el chapo might or might not be on board), so nothing to test
 }

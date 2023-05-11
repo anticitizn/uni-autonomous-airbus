@@ -15,6 +15,7 @@ public class Scenario01 extends BaseScenario {
             airbusA350.CountPassengers();
             Thread.sleep(2000);
             Logger.log("Total number of passengers: " + airbusA350.totalNumberOfPassengers.get());
+            Logger.close();
         }
         catch (Exception e) {
             System.err.println(e.getMessage());

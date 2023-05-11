@@ -40,6 +40,7 @@ public class Scenario03 extends BaseScenario {
 
             airbusA350.getCentralUnit().LoadCargo(storage, containers);
             Logger.log("Human counted " + human.countContainerItems() + " items");
+            Logger.close();
         }
         catch (Exception e) {
             System.err.println(e.getMessage());

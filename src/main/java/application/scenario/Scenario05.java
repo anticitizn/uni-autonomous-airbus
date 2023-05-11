@@ -13,6 +13,7 @@ public class Scenario05 extends BaseScenario {
             Logger.setFilename("scenario_05.log");
             Logger.log("Sensor reading initiated");
             airbusA350.getCentralUnit().ReadSensors();
+            Logger.close();
         }
         catch (Exception e) {
             System.err.println(e.getMessage());

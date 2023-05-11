@@ -64,7 +64,6 @@ public class Engine {
             Thread.sleep(3000);
             rpm = 6000;
             Logger.log("Engine RPM set to 6000");
-            phaser.arriveAndAwaitAdvance();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

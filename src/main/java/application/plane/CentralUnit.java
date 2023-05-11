@@ -17,7 +17,6 @@ public class CentralUnit {
     private int countMessageNormal = 0;
     private int countMessageWarning = 0;
     private int countMessageAlarm = 0;
-
     private int acknowledgedCount = 0;
     private int birdCount = 0;
 
@@ -51,7 +50,7 @@ public class CentralUnit {
         try {
             Thread.sleep(10000);
             scheduledExecutorService.shutdown();
-            scheduledExecutorService.awaitTermination(5, TimeUnit.SECONDS);
+            scheduledExecutorService.awaitTermination(30, TimeUnit.SECONDS);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -71,7 +70,7 @@ public class CentralUnit {
                 executorService.submit(robot::load);
             });
             executorService.shutdown();
-            executorService.awaitTermination(5, TimeUnit.SECONDS);
+            executorService.awaitTermination(30, TimeUnit.SECONDS);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -209,17 +208,28 @@ public class CentralUnit {
         this.acknowledgedCount = airbus.getRadar().getCountAcknowledged();
         this.birdCount = airbus.getProcessor().getCountBirds();
 
-        System.exit(0);
+        return;
     }
 
     public void StartEngines()
     {
         Phaser phaser = new Phaser(2);
-        for (Engine engine : airbus.getEngines())
-        {
-            engine.setPhaser(phaser);
-            Logger.log("Starting phased engine");
-            new Thread(engine::startPhased).start();
+        ExecutorService executorService = Executors.newFixedThreadPool(airbus.getEngines().size());
+        try {
+            airbus.getEngines().forEach(engine -> {
+                executorService.submit(() -> {
+                    engine.setPhaser(phaser);
+                    Logger.log("Starting phased engine");
+                    new Thread(engine::startPhased).start();
+                });
+            });
+            Thread.sleep(17000);
+            executorService.shutdown();
+            executorService.awaitTermination(30, TimeUnit.SECONDS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            Logger.log("Phased engine startup complete");
         }
 
     }
