@@ -7,13 +7,13 @@ import application.scenario.*;
 import application.utils.Logger;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ScenarioTests {
 
     @Test
-    public void TestScenario01()
-    {
+    public void TestScenario01() {
         Logger.setEnabled(false);
 
         Scenario01 scenario = new Scenario01();
@@ -25,8 +25,7 @@ public class ScenarioTests {
     // Scenario 02 has no defined end-state, so it cannot be tested
 
     @Test
-    public void TestScenarioS03()
-    {
+    public void TestScenarioS03() {
         Logger.setEnabled(false);
 
         Scenario03 scenario = new Scenario03();
@@ -34,29 +33,25 @@ public class ScenarioTests {
 
         assertTrue(scenario.getStorage().isEmpty());
 
-        for (Container container : scenario.getContainers())
-        {
+        for (Container container : scenario.getContainers()) {
             assertTrue(container.isFull());
         }
     }
 
     @Test
-    public void TestScenario04()
-    {
+    public void TestScenario04() {
         Logger.setEnabled(false);
 
         Scenario04 scenario = new Scenario04();
         scenario.start();
 
-        for (Engine engine : scenario.getAirbusA350().getEngines())
-        {
+        for (Engine engine : scenario.getAirbusA350().getEngines()) {
             assertTrue(engine.isRunning());
         }
     }
 
     @Test
-    public void TestScenario05()
-    {
+    public void TestScenario05() {
         Logger.setEnabled(false);
 
         Scenario05 scenario = new Scenario05();
@@ -74,15 +69,12 @@ public class ScenarioTests {
         Scenario06 scenario = new Scenario06();
         scenario.start();
 
-        for (LandingGear landingGear : scenario.getAirbusA350().getLandingGears())
-        {
+        for (LandingGear landingGear : scenario.getAirbusA350().getLandingGears()) {
             assertTrue(landingGear.isDown());
         }
 
-        for (Wing wing : scenario.getAirbusA350().getWings())
-        {
-            for (Flap flap : wing.getFlaps())
-            {
+        for (Wing wing : scenario.getAirbusA350().getWings()) {
+            for (Flap flap : wing.getFlaps()) {
                 assertTrue(flap.isDown());
             }
         }
@@ -106,8 +98,7 @@ public class ScenarioTests {
         Scenario08 scenario = new Scenario08();
         scenario.start();
 
-        for (Engine engine : scenario.getAirbusA350().getEngines())
-        {
+        for (Engine engine : scenario.getAirbusA350().getEngines()) {
             assertEquals(engine.getRpm(), 6000);
         }
 

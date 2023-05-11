@@ -15,6 +15,7 @@ public class CentralUnit {
     private int countMessageAlarm = 0;
     private int acknowledgedCount = 0;
     private int birdCount = 0;
+
     public CentralUnit(Airbus airbus) {
         this.airbus = airbus;
     }
