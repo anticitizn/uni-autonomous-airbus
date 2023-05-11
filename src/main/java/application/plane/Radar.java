@@ -13,8 +13,7 @@ public class Radar {
     private final char[][] picture = new char[100][100];
     private int countAcknowledged = 0;
 
-    public Radar(Exchanger exchanger)
-    {
+    public Radar(Exchanger exchanger) {
         this.exchanger = exchanger;
         generateImage();
     }
@@ -23,8 +22,7 @@ public class Radar {
         return countAcknowledged;
     }
 
-    public void StartScanning()
-    {
+    public void StartScanning() {
         while (true) {
             try {
                 generateImage();
@@ -40,44 +38,32 @@ public class Radar {
         }
     }
 
-    public void generateImage()
-    {
-        for (int i = 0; i < 100; i++)
-        {
-            for (int j = 0; j < 100; j++)
-            {
+    public void generateImage() {
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < 100; j++) {
                 picture[i][j] = '.';
             }
         }
 
-        for (int i = 0; i < 100; i++)
-        {
-            for (int j = 0; j < 100; j++)
-            {
-                if (rand.nextInt(100) < 10)
-                {
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < 100; j++) {
+                if (rand.nextInt(100) < 10) {
                     picture[i][j] = 'c';
                 }
             }
         }
 
-        for (int i = 0; i < 100; i++)
-        {
-            for (int j = 0; j < 100; j++)
-            {
-                if (rand.nextInt(100) < 3)
-                {
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < 100; j++) {
+                if (rand.nextInt(100) < 3) {
                     picture[i][j] = 'b';
                 }
             }
         }
 
-        for (int i = 0; i < 100; i++)
-        {
-            for (int j = 0; j < 100; j++)
-            {
-                if (rand.nextInt(100) < 3)
-                {
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < 100; j++) {
+                if (rand.nextInt(100) < 3) {
                     picture[i][j] = 't';
                 }
             }

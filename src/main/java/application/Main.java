@@ -9,9 +9,7 @@ public class Main {
         ScenarioExecutor scenarioExecutor = new ScenarioExecutor();
         try {
             scenarioExecutor.run();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
     }

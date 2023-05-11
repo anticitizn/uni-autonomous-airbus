@@ -14,8 +14,7 @@ public class Scenario02 extends BaseScenario {
             Logger.log("Anti-collision lights enabled");
             airbusA350.getCentralUnit().BlinkLights();
             Logger.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
 

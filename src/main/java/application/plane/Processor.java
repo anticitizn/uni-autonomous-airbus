@@ -7,8 +7,8 @@ import java.util.concurrent.Exchanger;
 public class Processor {
     private final Exchanger exchanger;
     private int countBirds = 0;
-    public Processor(Exchanger exchanger)
-    {
+
+    public Processor(Exchanger exchanger) {
         this.exchanger = exchanger;
     }
 
@@ -16,8 +16,7 @@ public class Processor {
         return countBirds;
     }
 
-    public void StartProcessing()
-    {
+    public void StartProcessing() {
         while (true) {
             try {
                 var image = exchanger.exchange("ack");

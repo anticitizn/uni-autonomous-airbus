@@ -3,30 +3,26 @@ package application.plane;
 import application.utils.Logger;
 
 public class AntiCollisionLight {
+    private final Position position;
     private boolean isOn = false;
-    private Position position;
-    public AntiCollisionLight(Position position)
-    {
+
+    public AntiCollisionLight(Position position) {
         this.position = position;
     }
 
-    public void on()
-    {
+    public void on() {
         isOn = true;
     }
 
-    public void off()
-    {
+    public void off() {
         isOn = false;
     }
 
-    public void switchState()
-    {
+    public void switchState() {
         isOn = !isOn;
     }
 
-    public void blink()
-    {
+    public void blink() {
         Logger.log(position.name() + " light blinking!");
         on();
         try {

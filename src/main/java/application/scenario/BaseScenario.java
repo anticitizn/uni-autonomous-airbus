@@ -2,7 +2,7 @@ package application.scenario;
 
 import application.plane.Airbus;
 
-public abstract class BaseScenario{
+public abstract class BaseScenario {
     protected Airbus airbusA350;
 
     public BaseScenario() {
@@ -11,11 +11,11 @@ public abstract class BaseScenario{
 
     public abstract void start();
 
-    public void setAirbusA350(Airbus airbusA350) {
-        this.airbusA350 = airbusA350;
-    }
-
     public Airbus getAirbusA350() {
         return airbusA350;
+    }
+
+    public void setAirbusA350(Airbus airbusA350) {
+        this.airbusA350 = airbusA350;
     }
 }

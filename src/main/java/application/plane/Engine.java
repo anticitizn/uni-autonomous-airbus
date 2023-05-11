@@ -14,8 +14,8 @@ public class Engine {
     public void turnOn() {
         isRunning = true;
     }
-    public void setPhaser(Phaser phaser)
-    {
+
+    public void setPhaser(Phaser phaser) {
         this.phaser = phaser;
     }
 
@@ -36,9 +36,7 @@ public class Engine {
             Thread.sleep((rand.nextInt(4) + 1) * 1000);
             turnOn();
             Logger.log("Engine on");
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
     }

@@ -1,14 +1,17 @@
 package application.scenario;
 
 import application.cargo.Container;
+import application.cargo.Storage;
 import application.humans.Human;
 import application.utils.Logger;
-import application.cargo.Storage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Scenario03 extends BaseScenario {
+
+    private final Storage storage = new Storage();
+    private final List<Container> containers = new ArrayList<>();
 
     public Scenario03() {
         super();
@@ -22,9 +25,6 @@ public class Scenario03 extends BaseScenario {
         return containers;
     }
 
-    private Storage storage = new Storage();
-    private List<Container> containers = new ArrayList<>();
-
     public void start() {
         try {
             Logger.setFilename("scenario_03.log");
@@ -33,16 +33,14 @@ public class Scenario03 extends BaseScenario {
             Human human = new Human();
             human.setContainers(containers);
 
-            for (int i = 0; i < 10; i++)
-            {
+            for (int i = 0; i < 10; i++) {
                 containers.add(new Container());
             }
 
             airbusA350.getCentralUnit().LoadCargo(storage, containers);
             Logger.log("Human counted " + human.countContainerItems() + " items");
             Logger.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
 

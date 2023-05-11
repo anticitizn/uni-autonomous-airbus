@@ -16,8 +16,7 @@ public class Scenario09 extends BaseScenario {
             DEA dea = new DEA(airbusA350.getCabinRobots());
             Logger.log("Is El Chapo on board: " + dea.isElChapoOnBoard());
             Logger.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
 

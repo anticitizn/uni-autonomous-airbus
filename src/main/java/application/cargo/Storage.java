@@ -1,7 +1,5 @@
 package application.cargo;
 
-import application.utils.Logger;
-
 import java.util.Stack;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;

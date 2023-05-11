@@ -1,7 +1,6 @@
 package application.robot;
 
 import application.cargo.Container;
-import application.utils.Logger;
 import application.cargo.Storage;
 
 import java.util.List;
@@ -16,9 +15,7 @@ public class CargoRobot extends AbstractRobot {
                 var item = this.storage.getItem();
                 if (!container.isFull()) {
                     container.insertItem(item);
-                }
-                else
-                {
+                } else {
                     storage.putItem(item);
                 }
             }

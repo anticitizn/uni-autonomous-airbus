@@ -11,10 +11,6 @@ public class DEA {
     boolean isElChapoOnBoard = false;
     private List<Future<AtomicBoolean>> futures = new ArrayList<>();
 
-    public boolean isElChapoOnBoard() {
-        return isElChapoOnBoard;
-    }
-
     public DEA(List<CabinRobot> robotsList) {
         ExecutorService executorService = Executors.newFixedThreadPool(5);
         try {
@@ -24,6 +20,10 @@ public class DEA {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean isElChapoOnBoard() {
+        return isElChapoOnBoard;
     }
 
     private void updateElChapoOnBoard() {

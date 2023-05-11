@@ -10,13 +10,25 @@ import java.util.concurrent.Exchanger;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Airbus {
+    public final AtomicInteger totalNumberOfPassengers = new AtomicInteger();
+    private final ArrayList<ArrayList<Seat>> seats = new ArrayList<ArrayList<Seat>>();
+    private final List<CabinRobot> cabinRobots = new ArrayList<>();
+    private final List<CargoRobot> cargoRobots = new ArrayList<>();
+    private final CentralUnit centralUnit = new CentralUnit(this);
+    private final List<EntranceDoor> entranceDoors = new ArrayList<>();
+    private final List<Engine> engines = new ArrayList<>();
+    private final List<Sensor> sensors = new ArrayList<>();
+    private final List<Wing> wings = new ArrayList<>();
+    private final List<LandingGear> landingGears = new ArrayList<>();
+    private final Processor processor;
+    private final Radar radar;
+    List<AntiCollisionLight> antiCollisionLight = new ArrayList<AntiCollisionLight>();
+
     public Airbus() {
         int tempSeatNumber = 0;
-        for (int i = 0; i < 42; i++)
-        {
+        for (int i = 0; i < 42; i++) {
             seats.add(new ArrayList<Seat>());
-            for (int j = 0; j < 6; j++)
-            {
+            for (int j = 0; j < 6; j++) {
                 seats.get(i).add(new Seat(new Passenger()));
                 tempSeatNumber++;
             }
@@ -33,33 +45,27 @@ public class Airbus {
         this.antiCollisionLight.add(new AntiCollisionLight(Position.Top));
         this.antiCollisionLight.add(new AntiCollisionLight(Position.Bottom));
 
-        for (int i = 0; i < 5; i++)
-        {
+        for (int i = 0; i < 5; i++) {
             this.cargoRobots.add(new CargoRobot());
         }
 
-        for (int i = 0; i < 4; i++)
-        {
+        for (int i = 0; i < 4; i++) {
             entranceDoors.add(new EntranceDoor());
         }
 
-        for (int i = 0; i < 2; i++)
-        {
+        for (int i = 0; i < 2; i++) {
             engines.add(new Engine());
         }
 
-        for (int i = 0; i < 500; i++)
-        {
+        for (int i = 0; i < 500; i++) {
             sensors.add(new Sensor());
         }
 
-        for (int i = 0; i < 2; i++)
-        {
+        for (int i = 0; i < 2; i++) {
             wings.add(new Wing());
         }
 
-        for (int i = 0; i < 3; i++)
-        {
+        for (int i = 0; i < 3; i++) {
             landingGears.add(new LandingGear());
         }
 
@@ -81,6 +87,7 @@ public class Airbus {
     public List<CargoRobot> getCargoRobots() {
         return cargoRobots;
     }
+
     public List<EntranceDoor> getEntranceDoors() {
         return entranceDoors;
     }
@@ -100,6 +107,7 @@ public class Airbus {
     public List<LandingGear> getLandingGears() {
         return landingGears;
     }
+
     public List<AntiCollisionLight> getAntiCollisionLight() {
         return antiCollisionLight;
     }
@@ -115,20 +123,5 @@ public class Airbus {
     public List<CabinRobot> getCabinRobots() {
         return cabinRobots;
     }
-
-    public final AtomicInteger totalNumberOfPassengers = new AtomicInteger();
-    private final ArrayList<ArrayList<Seat>> seats = new ArrayList<ArrayList<Seat>>();
-    private final List<CabinRobot> cabinRobots = new ArrayList<>();
-    private final List<CargoRobot> cargoRobots = new ArrayList<>();
-    private final CentralUnit centralUnit = new CentralUnit(this);
-    private final List<EntranceDoor> entranceDoors = new ArrayList<>();
-    private final List<Engine> engines = new ArrayList<>();
-    private final List<Sensor> sensors = new ArrayList<>();
-    private final List<Wing> wings = new ArrayList<>();
-    private final List<LandingGear> landingGears = new ArrayList<>();
-    List<AntiCollisionLight> antiCollisionLight = new ArrayList<AntiCollisionLight>();
-
-    private Processor processor;
-    private Radar radar;
 
 }

@@ -1,24 +1,23 @@
 package application.plane;
 
-import application.utils.Logger;
 import application.cargo.Container;
 import application.cargo.Storage;
 import application.robot.CargoRobot;
+import application.utils.Logger;
 
 import java.util.List;
 import java.util.concurrent.*;
 
 public class CentralUnit {
-    public CentralUnit(Airbus airbus)
-    {
-        this.airbus = airbus;
-    }
     private final Airbus airbus;
     private int countMessageNormal = 0;
     private int countMessageWarning = 0;
     private int countMessageAlarm = 0;
     private int acknowledgedCount = 0;
     private int birdCount = 0;
+    public CentralUnit(Airbus airbus) {
+        this.airbus = airbus;
+    }
 
     public int getCountMessageNormal() {
         return countMessageNormal;
@@ -40,8 +39,7 @@ public class CentralUnit {
         return birdCount;
     }
 
-    public void BlinkLights()
-    {
+    public void BlinkLights() {
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(2);
         airbus.getAntiCollisionLight().forEach(antiCollisionLight -> {
             scheduledExecutorService.scheduleAtFixedRate(antiCollisionLight::blink, 0, 3, TimeUnit.SECONDS);
@@ -57,8 +55,7 @@ public class CentralUnit {
 
     }
 
-    public void LoadCargo(Storage storage, List<Container> containers)
-    {
+    public void LoadCargo(Storage storage, List<Container> containers) {
         for (CargoRobot robot : airbus.getCargoRobots()) {
             robot.setContainers(containers);
             robot.setStorage(storage);
@@ -119,18 +116,15 @@ public class CentralUnit {
         }
     }
 
-    public void ReadSensors()
-    {
+    public void ReadSensors() {
         Semaphore semaphore = new Semaphore(100);
         ExecutorService executorService = Executors.newFixedThreadPool(500);
         try {
-            for (Sensor sensor : airbus.getSensors())
-            {
+            for (Sensor sensor : airbus.getSensors()) {
                 executorService.submit(() -> {
                     try {
                         semaphore.acquire();
-                        switch (sensor.getSensorStatus())
-                        {
+                        switch (sensor.getSensorStatus()) {
                             case Normal:
                                 countMessageNormal++;
                                 break;
@@ -158,12 +152,10 @@ public class CentralUnit {
         }
     }
 
-    public void Land()
-    {
+    public void Land() {
         CountDownLatch latch = new CountDownLatch(3);
-        for (LandingGear landingGear : airbus.getLandingGears())
-        {
-            new Thread( () -> {
+        for (LandingGear landingGear : airbus.getLandingGears()) {
+            new Thread(() -> {
                 landingGear.Lower();
                 latch.countDown();
             }).start();
@@ -171,33 +163,26 @@ public class CentralUnit {
 
         try {
             latch.await();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
 
-        for (Wing wing : airbus.getWings())
-        {
-            for (Flap flap : wing.getFlaps())
-            {
+        for (Wing wing : airbus.getWings()) {
+            for (Flap flap : wing.getFlaps()) {
                 flap.Lower();
             }
         }
         Logger.log("Flaps lowered");
     }
 
-    public void Scan()
-    {
+    public void Scan() {
         Logger.log("Starting bird scan");
         new Thread(airbus.getRadar()::StartScanning).start();
         new Thread(airbus.getProcessor()::StartProcessing).start();
 
         try {
             Thread.sleep(5000);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
 
@@ -208,11 +193,9 @@ public class CentralUnit {
         this.acknowledgedCount = airbus.getRadar().getCountAcknowledged();
         this.birdCount = airbus.getProcessor().getCountBirds();
 
-        return;
     }
 
-    public void StartEngines()
-    {
+    public void StartEngines() {
         Phaser phaser = new Phaser(2);
         ExecutorService executorService = Executors.newFixedThreadPool(airbus.getEngines().size());
         try {
